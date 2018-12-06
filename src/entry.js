@@ -1,3 +1,7 @@
+// Polyfill
+
+require("@webcomponents/webcomponentsjs");
+
 // SCSS
 
 const css = require("./style.scss");
