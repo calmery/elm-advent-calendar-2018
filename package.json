@@ -1,4 +1,7 @@
 {
+  "name": "elm-qiita-profile",
+  "version": "0.0.0",
+  "main": "build",
   "scripts": {
     "build": "rimraf build && webpack",
     "build:production": "NODE_ENV=production npm run build",
