@@ -1,23 +1,12 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
 const WriteFilePlugin = require("write-file-webpack-plugin");
 
-const mode = (() => {
-  switch (process.env.NODE_ENV) {
-    case "production":
-    case "development":
-      return process.env.NODE_ENV;
-    default:
-      return "development";
-  }
-})();
-
-const isProduction = mode === 'production';
+const isProduction = process.env.NODE_ENV === "production";
 
 module.exports = {
   entry: `${__dirname}/src/entry.js`,
-  mode,
-  devtool: isProduction ? false : 'source-map',
+  mode: process.env.NODE_ENV || "development",
+  devtool: isProduction ? false : "source-map",
   module: {
     rules: [
       {
@@ -48,9 +37,6 @@ module.exports = {
         collapseWhitespace: isProduction
       }
     }),
-    new CopyWebpackPlugin([
-      { from: `${__dirname}/src/assets`, to: `${__dirname}/build/assets` }
-    ]),
     new WriteFilePlugin()
   ]
 };
