@@ -6,6 +6,10 @@ require("./style.scss");
 
 const { Elm } = require("./elm/Main.elm");
 
-Elm.Main.init({
-  node: document.getElementById("elm")
-});
+class ElmWebComponents extends HTMLElement {
+  connectedCallback() {
+    Elm.Main.init({ node: this });
+  }
+}
+
+customElements.define("elm-web-components", ElmWebComponents);
