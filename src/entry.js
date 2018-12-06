@@ -1,6 +1,6 @@
 // SCSS
 
-require("./style.scss");
+const css = require("./style.scss");
 
 // Elm
 
@@ -8,7 +8,16 @@ const { Elm } = require("./elm/Main.elm");
 
 class ElmWebComponents extends HTMLElement {
   connectedCallback() {
-    Elm.Main.init({ node: this });
+    const shadowDom = this.attachShadow({ mode: "open" });
+
+    const style = document.createElement("style");
+    style.innerHTML = css;
+    shadowDom.appendChild(style);
+
+    const div = document.createElement("div");
+    shadowDom.appendChild(div);
+
+    Elm.Main.init({ node: div });
   }
 }
 

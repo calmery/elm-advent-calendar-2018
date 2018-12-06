@@ -11,7 +11,7 @@ module.exports = {
     rules: [
       {
         test: /\.scss$/,
-        loader: ["style-loader", "css-loader?url=false", "sass-loader"]
+        loader: ["raw-loader", "sass-loader"]
       },
       {
         test: /\.elm$/,
