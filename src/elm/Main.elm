@@ -1,9 +1,33 @@
 module Main exposing (main)
 
-import Html exposing (Html, div, text)
-import Html.Attributes exposing (class)
+import Browser exposing (element)
+import Model exposing (Model)
+import Port exposing (request)
+import Update exposing (Msg(..), getUserProfile, update)
+import View exposing (view)
 
 
-main : Html msg
+init : String -> ( Model, Cmd Msg )
+init userId =
+    ( Nothing
+    , if userId /= "" then
+        getUserProfile userId
+
+      else
+        Cmd.none
+    )
+
+
+subscriptions : Model -> Sub Msg
+subscriptions _ =
+    request ProfileRequest
+
+
+main : Program String Model Msg
 main =
-    div [ class "message" ] [ text "Hello World" ]
+    element
+        { init = init
+        , view = view
+        , update = update
+        , subscriptions = subscriptions
+        }

@@ -6,9 +6,14 @@
   </head>
 
   <body>
-    <!-- Web Components 内だけにスタイルが適用されていることを確認する -->
-    <div class="message">Hello World</div>
-    <elm-web-components />
+    <elm-qiita-profile id="elm" data-user-id="calmery" />
+
+    <script>
+      const elm = document.getElementById("elm");
+
+      elm.addEventListener("load", function() { console.log("Loaded") });
+      elm.addEventListener("error", function() { console.log("Error Occurred") });
+    </script>
   </body>
 
 </html>
