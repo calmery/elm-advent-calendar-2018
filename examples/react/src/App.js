@@ -77,6 +77,10 @@ class App extends Component {
   _onClick() {
     const { value } = this.state;
 
+    if (value === '') {
+      return;
+    }
+
     this.setState({
       disabled: true,
       userId: value,

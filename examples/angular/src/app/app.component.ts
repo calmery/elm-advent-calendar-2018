@@ -26,6 +26,10 @@ export class AppComponent implements AfterViewInit {
   }
 
   public onClick() {
+    if (this.value === '') {
+      return;
+    }
+
     this.userId = this.value;
     this.value = '';
     this.disabled = true;
